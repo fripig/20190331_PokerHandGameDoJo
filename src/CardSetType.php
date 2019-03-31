@@ -45,6 +45,11 @@ class CardSetType
         return max($cardsNumber) - min($cardsNumber) === 4;
     }
 
+    public function isStraightFlush()
+    {
+        return $this->isStraight() && $this->isFlush();
+    }
+
     public function isFourOfAKind()
     {
         return $this->givenSameOfAKind(4);

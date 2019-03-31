@@ -42,26 +42,24 @@ class CardSetTypeTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
-    public function is_not_straight()
+    public function straightFlushData()
     {
-        $cards = 'SA,S2,S3,S4,S6';
-        $cardSetType = $this->givenCardSetType($cards);
-
-        $this->assertFalse($cardSetType->isStraight());
+        return [
+            ['S2,S3,S4,S5,SA' , true],
+            ['D2,D3,D4,D5,DA' , true],
+            ['SA,S2,S3,S4,S6' , false],
+        ];
     }
 
     /**
      * @test
+     * @dataProvider straightFlushData
      */
-    public function is_straight_flush()
+    public function is_straight_flush($cards,$except)
     {
-        $cards = 'S2,S3,S4,S5,SA';
         $cardSetType = $this->givenCardSetType($cards);
 
-        $this->assertTrue($cardSetType->isStraight() && $cardSetType->isFlush());
+        $this->assertEquals($cardSetType->isStraightFlush(),$except);
     }
 
     public function test_is_Four_of_a_Kind()
