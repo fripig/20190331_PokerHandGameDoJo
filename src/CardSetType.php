@@ -2,6 +2,10 @@
 
 namespace App;
 
+
+
+use Exception;
+
 class CardSetType
 {
     /**
@@ -11,6 +15,10 @@ class CardSetType
 
     public function setCardSet(array $cardSet)
     {
+
+        if(count($cardSet) != 5){
+            throw new Exception('cardSet must 5');
+        }
         $this->cardSet = $cardSet;
     }
 
@@ -23,7 +31,7 @@ class CardSetType
 
     public function isStraight()
     {
-        $cardsNumber = $this->extractNumber();
+        $cardsNumber = array_unique($this->extractNumber());
 
         if (max($cardsNumber) === 13) {
             foreach ($cardsNumber as $key => $card) {
