@@ -6,23 +6,40 @@ use PHPUnit\Framework\TestCase;
 
 class CardSetTypeTest extends TestCase
 {
-    public function test_isFlush()
+    public function flushData()
     {
-        $cards = 'SA,S2,S3,S4,S5';
+        return [
+            ['SA,S2,S3,S4,S5',true],
+            ['SA,D4,S3,S4,S5',false],
+        ];
+    }
+    /**
+     * @dataProvider flushData
+     */
+    public function test_isFlush($cards,$except)
+    {
         $cardSetType = $this->givenCardSetType($cards);
 
-        $this->assertTrue($cardSetType->isFlush());
+        $this->assertEquals($cardSetType->isFlush(),$except);
     }
 
+    public function straightData()
+    {
+        return [
+            ['S10,SJ,SQ,SK,SA' , true],
+            ['SA,S2,S3,S4,S6' , false],
+        ];
+    }
     /**
      * @test
+     * @dataProvider straightData
      */
-    public function is_straight()
+    public function is_straight($cards,$except)
     {
-        $cards = 'S10,SJ,SQ,SK,SA';
         $cardSetType = $this->givenCardSetType($cards);
 
-        $this->assertTrue($cardSetType->isStraight());
+        $this->assertEquals($cardSetType->isStraight(),$except);
+
     }
 
     /**
