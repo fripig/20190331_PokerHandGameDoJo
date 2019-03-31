@@ -141,5 +141,8 @@ class CardSetType
         if($this->isThreeOfAKind()) return 3;
         if($this->isStraight()) return 2;
         if($this->isTwoPair()) return 1;
+        if($this->isOnePair()) return 0;
+
+        return -1;
     }
 }

@@ -145,7 +145,9 @@ class CardSetTypeTest extends TestCase
     }
 
     /**
+     * @param string $cards
      * @return CardSetType
+     * @throws Exception
      */
     public function givenCardSetType(string $cards)
     {
@@ -171,9 +173,12 @@ class CardSetTypeTest extends TestCase
             ['S2,D2,H3,D4,S5',0],
         ];
     }
+
     /**
      * @test
      * @dataProvider rankData
+     * @param $cards
+     * @param $except
      */
     public function getRank($cards,$except)
     {
