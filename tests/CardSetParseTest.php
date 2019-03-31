@@ -7,7 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 class CardSetParseTest extends TestCase
 {
-
     protected function tearDown()
     {
         m::close();
@@ -20,11 +19,10 @@ class CardSetParseTest extends TestCase
 
         $this->assertIsArray($result);
         $this->assertCount(5, $result);
-        $this->assertInstanceOf(\App\Card::class, $result[0]);
-        $this->assertInstanceOf(\App\Card::class, $result[1]);
-        $this->assertInstanceOf(\App\Card::class, $result[2]);
-        $this->assertInstanceOf(\App\Card::class, $result[3]);
-        $this->assertInstanceOf(\App\Card::class, $result[4]);
+        $this->assertInstanceOf(Card::class, $result[0]);
+        $this->assertInstanceOf(Card::class, $result[1]);
+        $this->assertInstanceOf(Card::class, $result[2]);
+        $this->assertInstanceOf(Card::class, $result[3]);
+        $this->assertInstanceOf(Card::class, $result[4]);
     }
-
 }
