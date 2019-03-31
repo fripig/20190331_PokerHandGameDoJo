@@ -2,9 +2,6 @@
 
 namespace App;
 
-use App\CardSetType;
-use App\CardSetParse;
-
 class PokerGame
 {
     private $firstPlayer;
@@ -24,11 +21,8 @@ class PokerGame
 
     public function play(string $firstCardSet, string $secondCardSet)
     {
-        $type1 = new CardSetType();
-        $type1->setCardSet((new CardSetParse($firstCardSet))->result());
-
-        $type2 = new CardSetType();
-        $type2->setCardSet((new CardSetParse($secondCardSet))->result());
+        $type1 = $this->givenCardType($firstCardSet);
+        $type2 = $this->givenCardType($secondCardSet);
 
         if ($type1->cardTypeResult() == $type2->cardTypeResult()) {
             return "Draw, {$type1->cardTypeResult()}";
@@ -37,4 +31,14 @@ class PokerGame
         return "Draw, Straight Flush";
     }
 
+    /**
+     * @param string $cards
+     * @return CardSetType
+     */
+    protected function givenCardType(string $cards): CardSetType
+    {
+        $cardSetType = new CardSetType();
+        $cardSetType->setCardSet((new CardSetParse($cards))->result());
+        return $cardSetType;
+    }
 }
