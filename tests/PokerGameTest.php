@@ -8,12 +8,18 @@ use PHPUnit\Framework\TestCase;
 class PokerGameTest extends TestCase
 {
 
+    /** @var PokerGame */
+    private $pokerGame;
+
+    protected function setUp()
+    {
+        $this->pokerGame = new PokerGame('Duncan', 'Mouson');
+    }
+
     public function test_GamePlayerSetting()
     {
-        $pokerGame = new PokerGame('Duncan', 'Mouson');
-        $result = $pokerGame->play( "H2,H3,H4,H5,H6","H2,H3,H4,H5,H6");
+        $result = $this->pokerGame->play("H2,H3,H4,H5,H6","H2,H3,H4,H5,H6");
 
         $this->assertEquals("Draw, Straight Flush", $result);
     }
-
 }

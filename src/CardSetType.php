@@ -99,4 +99,10 @@ class CardSetType
         return ($result[2] ?? 0) === 1;
     }
 
+    public function cardTypeResult()
+    {
+        if ($this->isFlush() && $this->isStraight()) {
+            return "Straight Flush";
+        }
+    }
 }
