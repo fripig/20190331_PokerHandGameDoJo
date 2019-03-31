@@ -43,12 +43,13 @@ class CardSetType
 
     public function is_Four_of_a_Kind()
     {
-        $cardsNumber = $this->extractNumber();
-
-        $result = array_count_values($cardsNumber);
-        return max(array_values($result)) == 4;
+        return $this->gavinSameOfAKind(4);
     }
 
+    public function is_Three_of_a_Kind()
+    {
+        return $this->gavinSameOfAKind(3);
+    }
     /**
      * @return array
      */
@@ -60,11 +61,18 @@ class CardSetType
         return $cardsNumber;
     }
 
-    public function is_Three_of_a_Kind()
+    /**
+     * @param $number
+     *
+     * @return bool
+     */
+    protected function gavinSameOfAKind($number): bool
     {
         $cardsNumber = $this->extractNumber();
 
         $result = array_count_values($cardsNumber);
-        return max(array_values($result)) == 3;
+
+        return max(array_values($result)) == $number;
     }
+
 }
