@@ -81,11 +81,7 @@ class CardSetType
 
     public function isTwoPair()
     {
-        $cardsNumber = $this->extractNumber();
-
-        $result = array_count_values($cardsNumber);
-
-        $result = array_count_values($result);
+        $result = $this->getCardsNumberGroup();
 
         $pair_count_key = 2;
         return ($result[$pair_count_key] ?? 0) === 2;
@@ -93,16 +89,20 @@ class CardSetType
 
     public function isFullHouse()
     {
-        return !$this->isTwoPair() && $this->isPair() && $this->isThreeOfAKind();
+        $result = $this->getCardsNumberGroup();
+
+        $three_kind_key = 3;
+        $pair_count_key = 2;
+
+        $has_three_kind = ($result[$three_kind_key] ?? 0) == 1;
+        $has_one_pair = ($result[$pair_count_key] ?? 0) == 1;
+
+        return $has_three_kind && $has_one_pair;
     }
 
     public function isPair()
     {
-        $cardsNumber = $this->extractNumber();
-
-        $result = array_count_values($cardsNumber);
-
-        $result = array_count_values($result);
+        $result = $this->getCardsNumberGroup();
 
         return ($result[2] ?? 0) === 1;
     }
@@ -112,5 +112,18 @@ class CardSetType
         if ($this->isFlush() && $this->isStraight()) {
             return "Straight Flush";
         }
+    }
+
+    /**
+     * @return array
+     */
+    protected function getCardsNumberGroup(): array
+    {
+        $cardsNumber = $this->extractNumber();
+
+        $result = array_count_values($cardsNumber);
+
+        $result = array_count_values($result);
+        return $result;
     }
 }
