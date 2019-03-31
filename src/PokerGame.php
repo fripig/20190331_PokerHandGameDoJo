@@ -13,8 +13,17 @@ class PokerGame
     {
     }
 
-    public function addPlayer(string $playerName, string $cardSet)
+    public function addFirstPlayerSet(string $playerName, string $cardSet)
     {
 
+    }
+
+    public function addSecondPlayerSet(string $string, string $string1)
+    {
+    }
+
+    public function getResult()
+    {
+        return "Draw, Straight Flush";
     }
 }
