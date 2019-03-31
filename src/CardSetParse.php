@@ -10,7 +10,7 @@ namespace App;
 
 use App\Card;
 
-class CardParse
+class CardSetParse
 {
     /**
      * @var string

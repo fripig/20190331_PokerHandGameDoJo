@@ -1,7 +1,7 @@
 <?php
 
 use App\Card;
-use App\CardParse;
+use App\CardSetParse;
 use App\PokerGame;
 use PHPUnit\Framework\TestCase;
 
