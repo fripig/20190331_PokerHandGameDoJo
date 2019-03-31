@@ -23,6 +23,7 @@ class CardTest extends TestCase
             ['CQ',1,12],
             ['CJ',1,11],
             ['CA',1,1],
+            ['C10',1,10],
         ];
     }
 
