@@ -27,9 +27,7 @@ class CardSetType
 
     public function is_straight()
     {
-        $cardsNumber = array_map(function (Card $card) {
-            return $card->getNumber();
-        }, $this->cardSet);
+        $cardsNumber = $this->extractNumber();
 
         if (max($cardsNumber) === 13) {
             foreach ($cardsNumber as $key => $card) {
@@ -41,5 +39,24 @@ class CardSetType
         }
 
         return max($cardsNumber) - min($cardsNumber) === 4;
+    }
+
+    public function is_Four_of_a_Kind()
+    {
+        $cardsNumber = $this->extractNumber();
+
+        $result = array_count_values($cardsNumber);
+        return max(array_values($result)) == 4;
+    }
+
+    /**
+     * @return array
+     */
+    public function extractNumber(): array
+    {
+        $cardsNumber = array_map(function (Card $card) {
+            return $card->getNumber();
+        }, $this->cardSet);
+        return $cardsNumber;
     }
 }
