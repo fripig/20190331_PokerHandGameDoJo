@@ -3,10 +3,6 @@
 
 namespace App;
 
-
-use mysql_xdevapi\Result;
-use test\Mockery\ArgumentObjectTypeHint;
-
 class CardSetType
 {
     /**
