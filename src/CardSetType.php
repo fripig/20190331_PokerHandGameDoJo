@@ -39,12 +39,12 @@ class CardSetType
 
     public function isFourOfAKind()
     {
-        return $this->gavinSameOfAKind(4);
+        return $this->givenSameOfAKind(4);
     }
 
     public function isThreeOfAKind()
     {
-        return $this->gavinSameOfAKind(3);
+        return $this->givenSameOfAKind(3);
     }
 
     /**
@@ -63,7 +63,7 @@ class CardSetType
      *
      * @return bool
      */
-    protected function gavinSameOfAKind($number): bool
+    protected function givenSameOfAKind($number): bool
     {
         $cardsNumber = $this->extractNumber();
         $result = array_count_values($cardsNumber);
