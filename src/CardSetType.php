@@ -4,6 +4,7 @@
 namespace App;
 
 
+use mysql_xdevapi\Result;
 use test\Mockery\ArgumentObjectTypeHint;
 
 class CardSetType
@@ -50,6 +51,7 @@ class CardSetType
     {
         return $this->gavinSameOfAKind(3);
     }
+
     /**
      * @return array
      */
@@ -73,6 +75,17 @@ class CardSetType
         $result = array_count_values($cardsNumber);
 
         return max(array_values($result)) == $number;
+    }
+
+    public function isTwoPair()
+    {
+        $cardsNumber = $this->extractNumber();
+
+        $result = array_count_values($cardsNumber);
+
+        $result = array_count_values($result);
+
+        return isset($result[2]) && $result[2] == 2;
     }
 
 }
