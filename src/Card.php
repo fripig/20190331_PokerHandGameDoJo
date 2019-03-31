@@ -33,7 +33,7 @@ class Card
             'K' => 13,
         ];
 
-        return $map[$text[1]] ?? intval($text[1]);
+        return $map[$text[1]] ?? intval(substr($text,1));
     }
 
     /**

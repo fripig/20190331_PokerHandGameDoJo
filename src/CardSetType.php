@@ -25,4 +25,21 @@ class CardSetType
             }, $this->cardSet))) == 1;
     }
 
+    public function is_straight()
+    {
+        $cardsNumber = array_map(function (Card $card) {
+            return $card->getNumber();
+        }, $this->cardSet);
+
+        if (max($cardsNumber) === 13) {
+            foreach ($cardsNumber as $key => $card) {
+                if ($card === 1) {
+                    $cardsNumber[$key] = 14;
+                    break;
+                }
+            }
+        }
+
+        return max($cardsNumber) - min($cardsNumber) === 4;
+    }
 }
