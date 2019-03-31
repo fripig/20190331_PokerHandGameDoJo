@@ -5,7 +5,6 @@ namespace App;
 
 class PokerGame
 {
-
     /**
      * PokerGame constructor.
      */
