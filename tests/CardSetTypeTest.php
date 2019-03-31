@@ -69,6 +69,14 @@ class CardSetTypeTest extends TestCase
         $this->assertFalse($cardSetType->is_Four_of_a_Kind());
     }
 
+    public function test_is_ThreeOfAKind()
+    {
+        $cards        = 'SA,DA,CA,H4,S2';
+        $cardSetType = $this->givenCardSetType($cards);
+
+        $this->assertTrue($cardSetType->is_Three_of_a_Kind());
+    }
+
     /**
      * @return CardSetType
      */

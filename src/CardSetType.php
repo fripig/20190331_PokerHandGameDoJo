@@ -59,4 +59,12 @@ class CardSetType
         }, $this->cardSet);
         return $cardsNumber;
     }
+
+    public function is_Three_of_a_Kind()
+    {
+        $cardsNumber = $this->extractNumber();
+
+        $result = array_count_values($cardsNumber);
+        return max(array_values($result)) == 3;
+    }
 }
