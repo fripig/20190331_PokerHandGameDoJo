@@ -129,7 +129,7 @@ class CardSetTypeTest extends TestCase
 
         $cardSetType = $this->givenCardSetType($cards);
 
-        $this->assertTrue($cardSetType->isPair());
+        $this->assertTrue($cardSetType->isOnePair());
     }
 
     /**
@@ -141,7 +141,7 @@ class CardSetTypeTest extends TestCase
 
         $cardSetType = $this->givenCardSetType($cards);
 
-        $this->assertFalse($cardSetType->isPair());
+        $this->assertFalse($cardSetType->isOnePair());
     }
 
     /**
@@ -156,5 +156,33 @@ class CardSetTypeTest extends TestCase
         $cardSetType->setCardSet($cardSetParse->result());
 
         return $cardSetType;
+    }
+
+    public function rankData()
+    {
+        return [
+            ['SA,S2,S3,S4,S5',32],
+            ['SA,DA,HA,CA,S5',16],
+            ['SA,DA,HA,D5,S5',5],
+            ['SA,S3,S5,S7,S8',4],
+            ['SA,DA,HA,D4,S5',3],
+            ['SA,D2,H3,D4,S5',2],
+            ['S2,D2,H3,D3,S5',1],
+            ['S2,D2,H3,D4,S5',0],
+        ];
+    }
+    /**
+     * @test
+     * @dataProvider rankData
+     */
+    public function getRank($cards,$except)
+    {
+
+
+        $cardSetType = $this->givenCardSetType($cards);
+
+        $rank = $cardSetType->getRank();
+
+        $this->assertEquals($rank,$except);
     }
 }

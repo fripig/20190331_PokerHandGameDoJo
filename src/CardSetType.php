@@ -105,7 +105,7 @@ class CardSetType
         return $has_three_kind && $has_one_pair;
     }
 
-    public function isPair()
+    public function isOnePair()
     {
         $result = $this->getCardsNumberGroup();
 
@@ -130,5 +130,16 @@ class CardSetType
 
         $result = array_count_values($result);
         return $result;
+    }
+
+    public function getRank()
+    {
+        if($this->isStraightFlush()) return 32;
+        if($this->isFourOfAKind()) return 16;
+        if($this->isFullHouse()) return 5;
+        if($this->isFlush()) return 4;
+        if($this->isThreeOfAKind()) return 3;
+        if($this->isStraight()) return 2;
+        if($this->isTwoPair()) return 1;
     }
 }
