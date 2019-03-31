@@ -12,12 +12,12 @@ class CardSetTypeTest extends TestCase
         m::close();
     }
 
-    public function test_is同花()
+    public function test_isFlush()
     {
         $cards        = 'SA,S2,S3,S4,S5';
         $cardSetType = $this->givenCardSetType($cards);
 
-        $this->assertTrue($cardSetType->is同花());
+        $this->assertTrue($cardSetType->is_Flush());
     }
 
     /**
@@ -40,6 +40,17 @@ class CardSetTypeTest extends TestCase
         $cardSetType = $this->givenCardSetType($cards);
 
         $this->assertFalse($cardSetType->is_straight());
+    }
+
+    /**
+     * @test
+     */
+    public function is_straight_flush()
+    {
+        $cards        = 'S2,S3,S4,S5,SA';
+        $cardSetType = $this->givenCardSetType($cards);
+
+        $this->assertTrue($cardSetType->is_straight() && $cardSetType->is_Flush());
     }
 
     /**

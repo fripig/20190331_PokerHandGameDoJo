@@ -18,7 +18,7 @@ class CardSetType
         $this->cardSet = $cardSet;
     }
 
-    public function is同花()
+    public function is_Flush()
     {
         return count(array_unique(array_map(function (Card $card) {
                 return $card->getColor();
