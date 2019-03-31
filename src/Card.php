@@ -21,6 +21,7 @@ class Card
             'D' => 2,
             'C' => 1
         ];
+        $text = strtoupper(trim($text));
         return $map[$text[0]] ?? -1;
     }
 
@@ -33,6 +34,7 @@ class Card
             'K' => 13,
         ];
 
+        $text = strtoupper(trim($text));
         return $map[$text[1]] ?? intval(substr($text,1));
     }
 
