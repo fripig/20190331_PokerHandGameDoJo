@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App;
 
 class CardSetType
@@ -51,7 +50,7 @@ class CardSetType
     /**
      * @return array
      */
-    public function extractNumber() : array
+    public function extractNumber(): array
     {
         $cardsNumber = array_map(function (Card $card) {
             return $card->getNumber();
@@ -64,10 +63,10 @@ class CardSetType
      *
      * @return bool
      */
-    protected function gavinSameOfAKind($number) : bool
+    protected function gavinSameOfAKind($number): bool
     {
         $cardsNumber = $this->extractNumber();
-        $result      = array_count_values($cardsNumber);
+        $result = array_count_values($cardsNumber);
 
         return max(array_values($result)) == $number;
     }

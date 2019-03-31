@@ -1,14 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: fripig
- * Date: 2019-03-31
- * Time: 11:59
- */
 
 namespace App;
-
-use App\Card;
 
 class CardSetParse
 {

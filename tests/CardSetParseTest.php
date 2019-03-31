@@ -1,17 +1,11 @@
 <?php
 
-namespace App;
-
-use Mockery as m;
+use App\Card;
+use App\CardSetParse;
 use PHPUnit\Framework\TestCase;
 
 class CardSetParseTest extends TestCase
 {
-    protected function tearDown()
-    {
-        m::close();
-    }
-
     public function testResult()
     {
         $cardSetParse = new CardSetParse("s2, s3, s4, s5, s6");
