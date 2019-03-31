@@ -17,7 +17,7 @@ class CardSetTypeTest extends TestCase
         $cards        = 'SA,S2,S3,S4,S5';
         $cardSetType = $this->givenCardSetType($cards);
 
-        $this->assertTrue($cardSetType->is_Flush());
+        $this->assertTrue($cardSetType->isFlush());
     }
 
     /**
@@ -28,7 +28,7 @@ class CardSetTypeTest extends TestCase
         $cards        = 'S10,SJ,SQ,SK,SA';
         $cardSetType = $this->givenCardSetType($cards);
 
-        $this->assertTrue($cardSetType->is_straight());
+        $this->assertTrue($cardSetType->isStraight());
     }
 
     /**
@@ -39,7 +39,7 @@ class CardSetTypeTest extends TestCase
         $cards        = 'SA,S2,S3,S4,S6';
         $cardSetType = $this->givenCardSetType($cards);
 
-        $this->assertFalse($cardSetType->is_straight());
+        $this->assertFalse($cardSetType->isStraight());
     }
 
     /**
@@ -50,7 +50,7 @@ class CardSetTypeTest extends TestCase
         $cards        = 'S2,S3,S4,S5,SA';
         $cardSetType = $this->givenCardSetType($cards);
 
-        $this->assertTrue($cardSetType->is_straight() && $cardSetType->is_Flush());
+        $this->assertTrue($cardSetType->isStraight() && $cardSetType->isFlush());
     }
 
     public function test_is_Four_of_a_Kind()
@@ -58,7 +58,7 @@ class CardSetTypeTest extends TestCase
         $cards        = 'SA,DA,CA,HA,S2';
         $cardSetType = $this->givenCardSetType($cards);
 
-        $this->assertTrue($cardSetType->is_Four_of_a_Kind());
+        $this->assertTrue($cardSetType->isFourOfAKind());
     }
 
     public function test_is_not_Four_of_a_Kind()
@@ -66,7 +66,7 @@ class CardSetTypeTest extends TestCase
         $cards        = 'SA,DA,CA,H4,S2';
         $cardSetType = $this->givenCardSetType($cards);
 
-        $this->assertFalse($cardSetType->is_Four_of_a_Kind());
+        $this->assertFalse($cardSetType->isFourOfAKind());
     }
 
     public function test_is_ThreeOfAKind()
@@ -74,16 +74,65 @@ class CardSetTypeTest extends TestCase
         $cards        = 'SA,DA,CA,H4,S2';
         $cardSetType = $this->givenCardSetType($cards);
 
-        $this->assertTrue($cardSetType->is_Three_of_a_Kind());
+        $this->assertTrue($cardSetType->isThreeOfAKind());
     }
 
     public function test_isTwoPair()
     {
-        $cards        = 'S1,D1,C2,H2,S8';
+        $cards        = 'SA,DA,C2,H2,S8';
 
         $cardSetType = $this->givenCardSetType($cards);
 
         $this->assertTrue($cardSetType->isTwoPair());
+    }
+
+    /**
+     * @test
+     * @group FullHouse
+     */
+    public function isFullHouse_return_true()
+    {
+        $cards        = 'SA,DA,HA,H2,D2';
+
+        $cardSetType = $this->givenCardSetType($cards);
+
+        $this->assertTrue($cardSetType->isFullHouse());
+    }
+
+    /**
+     * @test
+     */
+    public function isFullHouse_return_false()
+    {
+        $cards        = 'SA,DA,C2,H2,S8';
+
+        $cardSetType = $this->givenCardSetType($cards);
+
+        $this->assertFalse($cardSetType->isFullHouse());
+    }
+
+    /**
+     * @test
+     */
+    public function isPair_return_true()
+    {
+        $cards        = 'SA,D3,H4,H2,D2';
+
+        $cardSetType = $this->givenCardSetType($cards);
+
+        $this->assertTrue($cardSetType->isPair());
+    }
+
+    /**
+     * @test
+     */
+    public function isPair_return_false()
+    {
+        $cards        = 'SA,D3,H3,H2,D2';
+
+        $cardSetType = $this->givenCardSetType($cards);
+
+        $this->assertFalse($cardSetType->isPair());
     }
 
     /**

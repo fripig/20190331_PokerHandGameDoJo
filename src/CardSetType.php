@@ -19,14 +19,14 @@ class CardSetType
         $this->cardSet = $cardSet;
     }
 
-    public function is_Flush()
+    public function isFlush()
     {
         return count(array_unique(array_map(function (Card $card) {
                 return $card->getColor();
             }, $this->cardSet))) == 1;
     }
 
-    public function is_straight()
+    public function isStraight()
     {
         $cardsNumber = $this->extractNumber();
 
@@ -42,12 +42,12 @@ class CardSetType
         return max($cardsNumber) - min($cardsNumber) === 4;
     }
 
-    public function is_Four_of_a_Kind()
+    public function isFourOfAKind()
     {
         return $this->gavinSameOfAKind(4);
     }
 
-    public function is_Three_of_a_Kind()
+    public function isThreeOfAKind()
     {
         return $this->gavinSameOfAKind(3);
     }
@@ -55,7 +55,7 @@ class CardSetType
     /**
      * @return array
      */
-    public function extractNumber(): array
+    public function extractNumber() : array
     {
         $cardsNumber = array_map(function (Card $card) {
             return $card->getNumber();
@@ -68,11 +68,10 @@ class CardSetType
      *
      * @return bool
      */
-    protected function gavinSameOfAKind($number): bool
+    protected function gavinSameOfAKind($number) : bool
     {
         $cardsNumber = $this->extractNumber();
-
-        $result = array_count_values($cardsNumber);
+        $result      = array_count_values($cardsNumber);
 
         return max(array_values($result)) == $number;
     }
@@ -85,7 +84,23 @@ class CardSetType
 
         $result = array_count_values($result);
 
-        return isset($result[2]) && $result[2] == 2;
+        return ($result[2] ?? 0) === 2;
+    }
+
+    public function isFullHouse()
+    {
+        return !$this->isTwoPair() && $this->isPair() && $this->isThreeOfAKind();
+    }
+
+    public function isPair()
+    {
+        $cardsNumber = $this->extractNumber();
+
+        $result = array_count_values($cardsNumber);
+
+        $result = array_count_values($result);
+
+        return ($result[2] ?? 0) === 1;
     }
 
 }
