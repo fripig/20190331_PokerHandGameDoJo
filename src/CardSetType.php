@@ -87,7 +87,8 @@ class CardSetType
 
         $result = array_count_values($result);
 
-        return ($result[2] ?? 0) === 2;
+        $pair_count_key = 2;
+        return ($result[$pair_count_key] ?? 0) === 2;
     }
 
     public function isFullHouse()
