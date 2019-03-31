@@ -5,24 +5,25 @@ namespace App;
 
 class PokerGame
 {
+    private $firstPlayer;
+    private $secondPlayer;
+
     /**
      * PokerGame constructor.
+     *
+     * @param $firstPlayer
+     * @param $secondPlayer
      */
-    public function __construct()
+    public function __construct($firstPlayer, $secondPlayer)
     {
+        $this->firstPlayer = $firstPlayer;
+        $this->secondPlayer = $secondPlayer;
     }
 
-    public function addFirstPlayerSet(string $playerName, string $cardSet)
-    {
-
-    }
-
-    public function addSecondPlayerSet(string $string, string $string1)
-    {
-    }
-
-    public function getResult()
+    public function play(string $firstCardSet, string $secondCardSet)
     {
         return "Draw, Straight Flush";
+
     }
+
 }
