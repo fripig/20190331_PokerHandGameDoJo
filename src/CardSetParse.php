@@ -15,21 +15,22 @@ class CardSetParse
     /**
      * @var string
      */
-    private $card;
+    private $cards;
     private $result;
 
     /**
      * CardParse constructor.
-     * @param string $card
+     * @param string $cards
      */
-    public function __construct(string $card)
+    public function __construct(string $cards)
     {
-        $this->card = $card;
+        $this->cards = $cards;
+        $this->parse();
     }
 
     private function parse()
     {
-        $result = explode(',',$this->card);
+        $result = explode(',',$this->cards);
         $this->result = array_map(function($item){
             return new Card($item);
         },$result);
