@@ -16,11 +16,11 @@ class CardSetTypeTest extends TestCase
     /**
      * @dataProvider flushData
      */
-    public function test_isFlush($cards,$except)
+    public function test_isFlush($cards,$expect)
     {
         $cardSetType = $this->givenCardSetType($cards);
 
-        $this->assertEquals($cardSetType->isFlush(),$except);
+        $this->assertEquals($cardSetType->isFlush(),$expect);
     }
 
     public function straightData()
@@ -34,11 +34,11 @@ class CardSetTypeTest extends TestCase
      * @test
      * @dataProvider straightData
      */
-    public function is_straight($cards,$except)
+    public function is_straight($cards,$expect)
     {
         $cardSetType = $this->givenCardSetType($cards);
 
-        $this->assertEquals($cardSetType->isStraight(),$except);
+        $this->assertEquals($cardSetType->isStraight(),$expect);
 
     }
 
@@ -55,11 +55,11 @@ class CardSetTypeTest extends TestCase
      * @test
      * @dataProvider straightFlushData
      */
-    public function is_straight_flush($cards,$except)
+    public function is_straight_flush($cards,$expect)
     {
         $cardSetType = $this->givenCardSetType($cards);
 
-        $this->assertEquals($cardSetType->isStraightFlush(),$except);
+        $this->assertEquals($cardSetType->isStraightFlush(),$expect);
     }
 
     public function test_is_Four_of_a_Kind()
@@ -171,6 +171,7 @@ class CardSetTypeTest extends TestCase
             ['SA,D2,H3,D4,S5',2],
             ['S2,D2,H3,D3,S5',1],
             ['S2,D2,H3,D4,S5',0],
+            ['S2,D7,H3,D4,S5',-1],
         ];
     }
 
@@ -178,9 +179,9 @@ class CardSetTypeTest extends TestCase
      * @test
      * @dataProvider rankData
      * @param $cards
-     * @param $except
+     * @param $expect
      */
-    public function getRank($cards,$except)
+    public function getRank($cards,$expect)
     {
 
 

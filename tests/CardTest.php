@@ -24,11 +24,11 @@ class CardTest extends TestCase
     /**
      * @dataProvider cardProvider
      */
-    public function test_parseSingleCard($text, $exceptColor, $exceptNumber)
+    public function test_parseSingleCard($text, $expectColor, $expectNumber)
     {
         $card = new Card($text);
 
-        $this->assertEquals($card->getColor(), $exceptColor);
-        $this->assertEquals($card->getNumber(), $exceptNumber);
+        $this->assertEquals($card->getColor(), $expectColor);
+        $this->assertEquals($card->getNumber(), $expectNumber);
     }
 }
