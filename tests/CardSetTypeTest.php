@@ -188,6 +188,36 @@ class CardSetTypeTest extends TestCase
 
         $rank = $cardSetType->getRank();
 
-        $this->assertEquals($rank,$except);
+        $this->assertEquals($rank,$expect);
+    }
+
+    public function compareData()
+    {
+        return [
+            ["H2,H3,H4,H5,H6","HA,H3,H4,H5,H6",1, '同花要比散排大'],
+            ["H2,H3,H4,H5,H6","H2,H3,H4,H5,H6",0, '同花順一樣大'],
+            ["H2,H3,H4,H5,H6","HA,SA,DA,CA,H6",1 , '同花順比四條大'],
+            ["HA,SA,DA,C6,H6","HA,SA,DA,CA,H6",-1, '四條比full house大'],
+            ["HA,H3,H4,H6,H7","HA,SA,DA,CA,H6",-1, '同花比full house小'],
+            ["HA,H3,H4,H6,H7","HA,SA,DA,C5,H6",1, '同花比三條大'],
+            ["HA,C2,H3,H4,H5","HA,SA,DA,C5,H6",-1, '順子比三條小'],
+            ["HA,C2,H3,H4,H5","HA,SA,D5,C5,H6",1, '順子比two pair大'],
+            ["HA,CA,H3,H4,H5","HA,SA,D5,C5,H6",-1, 'one pair比two pair小'],
+        ];
+    }
+    /**
+     * @param CardSetType $first
+     * @param CardSetType $second
+     * @throws Exception
+     * @test
+     * @dataProvider compareData
+     */
+    public function compare($first,$second,$expect,$message)
+    {
+        $first = $this->givenCardSetType($first);
+        $second = $this->givenCardSetType($second);
+        $result = $first->compare($second);
+
+        $this->assertEquals($result,$expect,$message);
     }
 }

@@ -142,4 +142,9 @@ class CardSetType
 
         return -1;
     }
+
+    public function compare(CardSetType $target)
+    {
+        return $this->getRank() <=> $target->getRank();
+    }
 }
